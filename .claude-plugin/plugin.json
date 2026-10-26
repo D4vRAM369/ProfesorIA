@@ -1,0 +1,6 @@
+{
+  "name": "profesoria",
+  "version": "0.1.0",
+  "description": "Project-based-learning teacher that explains the code being written in the current session through short, in-character teacher notes.",
+  "license": "MIT"
+}

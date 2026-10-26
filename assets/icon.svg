@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="112" fill="#141831"/>
+  <path d="M112 150 h288 a40 40 0 0 1 40 40 v160 a40 40 0 0 1 -40 40 h-148 l-78 62 v-62 h-62 a40 40 0 0 1 -40 -40 v-160 a40 40 0 0 1 40 -40 z" fill="#FFB547"/>
+  <text x="256" y="344" text-anchor="middle" font-family="JetBrains Mono, Fira Code, monospace" font-weight="800" font-size="170" fill="#141831">¿!</text>
+  <g transform="rotate(-14 150 126)">
+    <polygon points="150,62 250,104 150,146 50,104" fill="#3DDC97"/>
+    <path d="M96 124 v30 c0 20 108 20 108 0 v-30 l-54 22 z" fill="#2BB57B"/>
+    <line x1="238" y1="110" x2="238" y2="162" stroke="#3DDC97" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="238" cy="168" r="10" fill="#3DDC97"/>
+  </g>
+  <path d="M410 70 l12 -26 l12 26 l26 12 l-26 12 l-12 26 l-12 -26 l-26 -12 z" fill="#AFA9EC"/>
+</svg>

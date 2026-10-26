@@ -1,0 +1,10 @@
+__pycache__/
+.pytest_cache/
+docs/transcripts/
+.superpowers/
+.omc/
+# personal, never published
+docs/
+tests/forbidden.local.txt
+profile.md
+map.md
