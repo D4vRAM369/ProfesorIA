@@ -82,33 +82,28 @@ Pick one the first time and switch whenever you like. They change the voice and 
 
 ## Installation
 
-You need [Claude Code](https://code.claude.com) and Python 3.8+ (for the hook only, no dependencies).
-
-**1. Clone the repo and link the skill**
+You need [Claude Code](https://code.claude.com) and Python 3.8+ (no dependencies).
 
 ```bash
 git clone https://github.com/D4vRAM369/ProfesorIA.git
 ```
 
 ```bash
-ln -s "$PWD/ProfesorIA/skills/profesoria" ~/.claude/skills/profesoria
+python3 ProfesorIA/install.py
 ```
 
-**2. (Recommended) Turn on the hook**
+Open a new Claude Code session and type `/profesoria`. That's it.
 
-It stops the teacher from "forgetting" it's active when the conversation gets long. Add this entry to `hooks.UserPromptSubmit` and to `hooks.SessionStart` in `~/.claude/settings.json`, with your own path:
+<details>
+<summary><b>What does the installer do?</b></summary>
 
-```json
-{ "hooks": [{ "type": "command", "command": "python3 /path/to/ProfesorIA/hooks/profesoria_hook.py", "timeout": 5 }] }
-```
+- Links the skill into `~/.claude/skills/profesoria`, which is what makes `/profesoria` work.
+- Adds a hook to `~/.claude/settings.json` that keeps the teacher active in long conversations, plus the permission to save your progress without asking.
+- Before changing anything, it saves a copy to `settings.json.bak-profesoria`. It doesn't overwrite your hooks or settings, and running it again duplicates nothing.
+- If it finds something it doesn't recognise (a broken `settings.json`, another skill with the same name), it stops without touching anything.
 
-**3. (Recommended) Let it save your progress without asking**
-
-In `permissions.allow` in the same file:
-
-```json
-"Write(~/.claude/profesoria/**)", "Edit(~/.claude/profesoria/**)"
-```
+To uninstall: `python3 ProfesorIA/install.py --uninstall`. Your profile and progress in `~/.claude/profesoria/` are kept.
+</details>
 
 ## Usage
 
@@ -184,10 +179,11 @@ skills/profesoria/
   personalities/         one file per teacher
   references/            onboarding, session close, docs templates
 hooks/profesoria_hook.py keeps the teacher active after compaction
-tests/                   skill validator and hook tests
+install.py               installer (and --uninstall)
+tests/                   skill validator, hook and installer tests
 ```
 
-**Roadmap:** one-command install as a Claude Code plugin · support for Codex and other agents · more teachers from the community.
+**Roadmap:** support for Codex and other agents · more teachers from the community.
 
 ---
 

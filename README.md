@@ -80,33 +80,28 @@ Eliges uno la primera vez y lo cambias cuando quieras. Cambian la voz y las anal
 
 ## Instalación
 
-Necesitas [Claude Code](https://code.claude.com) y Python 3.8+ (solo para el hook, sin dependencias).
-
-**1. Clona el repo y enlaza la skill**
+Necesitas [Claude Code](https://code.claude.com) y Python 3.8+ (sin dependencias).
 
 ```bash
 git clone https://github.com/D4vRAM369/ProfesorIA.git
 ```
 
 ```bash
-ln -s "$PWD/ProfesorIA/skills/profesoria" ~/.claude/skills/profesoria
+python3 ProfesorIA/install.py
 ```
 
-**2. (Recomendado) Activa el hook**
+Abre una sesión nueva de Claude Code y escribe `/profesoria`. Listo.
 
-Evita que el profe "se olvide" de que está activo cuando la conversación es larga. Añade esta entrada a `hooks.UserPromptSubmit` y a `hooks.SessionStart` en `~/.claude/settings.json`, cambiando la ruta por la tuya:
+<details>
+<summary><b>¿Qué hace el instalador?</b></summary>
 
-```json
-{ "hooks": [{ "type": "command", "command": "python3 /ruta/a/ProfesorIA/hooks/profesoria_hook.py", "timeout": 5 }] }
-```
+- Enlaza la skill en `~/.claude/skills/profesoria`, que es lo que hace que funcione `/profesoria`.
+- Añade a `~/.claude/settings.json` un hook que mantiene al profe activo en conversaciones largas, y el permiso para guardar tu progreso sin preguntarte.
+- Antes de cambiar nada, guarda una copia en `settings.json.bak-profesoria`. No pisa tus hooks ni tus ajustes, y puedes ejecutarlo varias veces sin duplicar nada.
+- Si encuentra algo que no reconoce (un `settings.json` roto, otra skill con el mismo nombre), se detiene sin tocar nada.
 
-**3. (Recomendado) Deja que guarde tu progreso sin preguntar**
-
-En `permissions.allow` del mismo archivo:
-
-```json
-"Write(~/.claude/profesoria/**)", "Edit(~/.claude/profesoria/**)"
-```
+Para desinstalar: `python3 ProfesorIA/install.py --uninstall`. Tu perfil y tu progreso en `~/.claude/profesoria/` se conservan.
+</details>
 
 ## Uso
 
@@ -182,10 +177,11 @@ skills/profesoria/
   personalities/         un archivo por profe
   references/            onboarding, cierre de sesión, plantillas de docs
 hooks/profesoria_hook.py mantiene el profe activo tras compactar
-tests/                   validador de la skill y tests del hook
+install.py               instalador (y --uninstall)
+tests/                   validador de la skill, hook e instalador
 ```
 
-**Roadmap:** instalación en un comando como plugin de Claude Code · soporte para Codex y otros agentes · más profes de la comunidad.
+**Roadmap:** soporte para Codex y otros agentes · más profes de la comunidad.
 
 ---
 
