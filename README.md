@@ -4,7 +4,7 @@
 
 <p align="center">
   <b>Un profe digital para Claude Code que te explica el código que estás construyendo, sin frenar tu proyecto.</b><br>
-  <sub>A digital teacher for Claude Code that explains the code you're building, without slowing your project down.</sub>
+  <sub>🇬🇧 <a href="README.en.md">Read in English</a></sub>
 </p>
 
 <p align="center">
@@ -18,7 +18,7 @@
   <a href="#uso">Uso</a> ·
   <a href="#los-tres-profes">Los tres profes</a> ·
   <a href="#preguntas-frecuentes">FAQ</a> ·
-  <a href="#-english">English</a>
+  <a href="README.en.md">🇬🇧 English</a>
 </p>
 
 ---
@@ -186,71 +186,6 @@ tests/                   validador de la skill y tests del hook
 ```
 
 **Roadmap:** instalación en un comando como plugin de Claude Code · soporte para Codex y otros agentes · más profes de la comunidad.
-
----
-
-## 🇬🇧 English
-
-<details>
-<summary><b>Read in English</b></summary>
-
-### The problem
-
-You vibe code. The AI writes code that works, you accept it, the project moves on… and you're left with an uncomfortable feeling: **"I built this… and I don't understand it."** Stopping to ask about every line kills your momentum. A course full of HelloWorld and toy maths doesn't help either.
-
-### The idea
-
-**ProfesorIA** sits next to you while you build. When something you haven't mastered shows up, it adds **one short note about one concept**, using *your* code as the example. If there's nothing new worth teaching, it stays quiet. Your project is the syllabus, and the goal is the **"oh, so *that's* all it was?"** moment.
-
-### What makes it different
-
-- **Your own code**, taught at the moment it appears. No generic exercises.
-- **One concept per note**, 3–6 lines, or silence.
-- **A map of what you already know** (❌ → 🟡 → ✅), carried across projects. It never re-explains what you've mastered.
-- **Analogy first, technical name last** for concepts with a scary reputation.
-- **The A → B → C flow**: how data travels through your app.
-- **Nothing mandatory.** No quizzes, no `TODO(human)`. It never slows you down.
-- **Docs at the end**: a glossary, a step-by-step guide, and errors with their fixes, written to `docs/`.
-
-### The three teachers
-
-🔧 **The veteran mechanic** (`mechanic`): direct, dry humour, workshop analogies. · 🎒 **The cool teacher** (`cool-teacher`): warm, bad jokes, celebrates your wins. · 🧙 **The video-game master** (`game-master`): a wise, sly NPC, and your project is the quest. They change the voice, never the rules. The teacher always speaks your language.
-
-### Installation
-
-Requirements: [Claude Code](https://code.claude.com) and Python 3.8+ (for the hook only, no dependencies).
-
-```bash
-git clone https://github.com/D4vRAM369/ProfesorIA.git
-```
-
-```bash
-ln -s "$PWD/ProfesorIA/skills/profesoria" ~/.claude/skills/profesoria
-```
-
-**Recommended:** add the hook to `hooks.UserPromptSubmit` and `hooks.SessionStart` in `~/.claude/settings.json`, so the teacher stays active in long sessions. Also add the permissions so your progress gets saved without prompts:
-
-```json
-{ "hooks": [{ "type": "command", "command": "python3 /path/to/ProfesorIA/hooks/profesoria_hook.py", "timeout": 5 }] }
-```
-
-```json
-"Write(~/.claude/profesoria/**)", "Edit(~/.claude/profesoria/**)"
-```
-
-### Usage
-
-| Command | What it does |
-|---|---|
-| `/profesoria` | Activates the teacher (first time: pick one and answer 2–3 level questions) |
-| `/profesoria <id>` | Switches teacher: `mechanic`, `cool-teacher` or `game-master` |
-| `/profesoria progreso` | Shows your progress card |
-| "go deeper" / "¿lo desmenuzo?" | Goes deeper on the last note |
-| "close the session" / "cierra la sesión" | Saves your progress and writes the docs and a summary |
-
-Your profile and map live in `~/.claude/profesoria/`, on your machine.
-
-</details>
 
 ---
 
