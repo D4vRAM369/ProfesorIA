@@ -108,3 +108,12 @@ def test_mentor_persona_suppressed():
 
 def test_slash_activation_survives_compaction_hint():
     assert "survives compaction" in SKILL.read_text()
+
+
+def test_close_triggers_both_languages_and_offers_on_inferred_end():
+    skill = SKILL.read_text()
+    close = (ROOT / "skills/profesoria/references/session-close.md").read_text()
+    assert "close the session" in parse_frontmatter(SKILL)["description"]
+    for t in (skill, close):
+        assert "cierra la sesión" in t and "close the session" in t
+    assert "offer" in close and "never run the close flow on a guess" in close

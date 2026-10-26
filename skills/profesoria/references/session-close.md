@@ -2,7 +2,7 @@
 
 ## Close flow
 
-Run when the user says "cierra la sesión" or clearly signals the end of the session. In order:
+Run only when the user explicitly asks to close: "cierra la sesión", "close the session", or the same request in their language. The close flow writes files into the user's project, so never run the close flow on a guess: if the end is only implied (a goodbye, a pause), offer it in one line ("¿Cierro la sesión y genero la documentación?") and wait. In order:
 
 1. **Save the map.** Write every pending change to `~/.claude/profesoria/map.md` (and `level:` / `stack:` in `profile.md` if they changed). This is the one write that must always happen.
 2. **Project docs.** Generate or append the project's `docs/` following `docs-templates.md`. If `docs/` already exists, **append**: never overwrite or delete existing content. Only document what happened in this session.

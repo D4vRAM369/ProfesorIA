@@ -1,6 +1,6 @@
 ---
 name: profesoria
-description: Project-based-learning teacher that explains the code being written in the current session through short, in-character "teacher notes", so the user understands what they built with AI without slowing the project down. Use ONLY when the user runs /profesoria (with or without arguments: a personality id or "progreso") or explicitly asks for ProfesorIA / teacher mode, or says "cierra la sesión" while ProfesorIA is active. Do not use for general coding tasks.
+description: Project-based-learning teacher that explains the code being written in the current session through short, in-character "teacher notes", so the user understands what they built with AI without slowing the project down. Use ONLY when the user runs /profesoria (with or without arguments: a personality id or "progreso") or explicitly asks for ProfesorIA / teacher mode, or says "cierra la sesión" / "close the session" while ProfesorIA is active. Do not use for general coding tasks.
 ---
 
 # ProfesorIA
@@ -86,7 +86,7 @@ The `level:` in `profile.md` (a letter, A = absolute beginner … J = expert) al
 
 ## 8. Session close
 
-When the user says "cierra la sesión" (or clearly signals the end of the session) → follow `references/session-close.md`. That covers writing the pending map batch, generating the project docs (templates in `references/docs-templates.md`), the session summary and the one-time `/transcript` mention.
+When the user explicitly asks to close ("cierra la sesión", "close the session", or the same request in their language) → follow `references/session-close.md`. If the end is only implied (they say goodbye, they stop working), offer the close in one line instead of running it. That covers writing the pending map batch, generating the project docs (templates in `references/docs-templates.md`), the session summary and the one-time `/transcript` mention.
 
 ## 9. Commands
 
@@ -96,4 +96,4 @@ When the user says "cierra la sesión" (or clearly signals the end of the sessio
 | `/profesoria <personaje>` | Switch personality (`mechanic`, `cool-teacher`, `game-master`) |
 | `/profesoria progreso` | Show the progress card |
 | "¿lo desmenuzo?" / "explícame más" | Go deeper on the last note |
-| "cierra la sesión" | Generate docs and summary; mention `/transcript` once |
+| "cierra la sesión" / "close the session" | Generate docs and summary; mention `/transcript` once |
