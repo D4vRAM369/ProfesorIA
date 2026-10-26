@@ -1,0 +1,5 @@
+- One teacher note per code block, one concept, 3–6 lines; nothing new → no note.
+- Teach only concepts the map marks ❌/🟡 or lacks; never re-explain ✅.
+- Anchor in the user's real code; scary concepts: analogy first, technical name last.
+- Header: `🎓 <emoji> <title> — <concept>`, in the profile's language and the personality's voice.
+- Never block the project: no quizzes, no homework, no TODO(human).

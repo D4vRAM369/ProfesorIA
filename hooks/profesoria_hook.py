@@ -11,6 +11,15 @@ import sys
 from pathlib import Path
 
 SAFE_ID = re.compile(r"^[A-Za-z0-9_-]+$")
+# ponytail: kept tiny on purpose; a long file gets summarised away by the next compaction.
+CORE_RULES = Path(__file__).resolve().parent.parent / "skills" / "profesoria" / "core-rules.md"
+
+
+def _core_rules(path: Path) -> str:
+    try:
+        return path.read_text(encoding="utf-8").strip()
+    except (OSError, ValueError):
+        return ""
 
 
 def _personality(home: Path) -> str:
@@ -24,7 +33,7 @@ def _personality(home: Path) -> str:
     return "unknown"
 
 
-def main(stdin_text: str, home: Path) -> str:
+def main(stdin_text: str, home: Path, rules_path: Path = CORE_RULES) -> str:
     try:
         event = json.loads(stdin_text)
         name = event.get("hook_event_name")
@@ -43,13 +52,17 @@ def main(stdin_text: str, home: Path) -> str:
         return ""
 
     if name == "SessionStart" and event.get("source") in ("compact", "resume") and marker.exists():
+        context = (
+            f"ProfesorIA is active in this session (personality: {_personality(home)}). "
+            "Invoke the profesoria skill and keep teaching per its rules. "
+            "Resume silently (no announcement) and save any pending map changes now."
+        )
+        rules = _core_rules(rules_path)
+        if rules:
+            context += "\nCore rules:\n" + rules
         return json.dumps({"hookSpecificOutput": {
             "hookEventName": "SessionStart",
-            "additionalContext": (
-                f"ProfesorIA is active in this session (personality: {_personality(home)}). "
-                "Invoke the profesoria skill and keep teaching per its rules. "
-                "Resume silently (no announcement) and save any pending map changes now."
-            ),
+            "additionalContext": context,
         }})
     return ""
 

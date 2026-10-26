@@ -81,3 +81,23 @@ def test_reminder_resumes_silently_and_saves_map(tmp_path):
     ctx = json.loads(main(ev(hook_event_name="SessionStart", session_id="s1", source="compact"),
                           tmp_path))["hookSpecificOutput"]["additionalContext"]
     assert "silently" in ctx and "map" in ctx
+
+
+def test_reminder_includes_core_rules(tmp_path):
+    mark(tmp_path)
+    ctx = json.loads(main(ev(hook_event_name="SessionStart", session_id="s1", source="compact"),
+                          tmp_path))["hookSpecificOutput"]["additionalContext"]
+    assert "Core rules:" in ctx and "one concept" in ctx
+
+
+def test_core_rules_file_stays_tiny():
+    from profesoria_hook import CORE_RULES
+    assert len(CORE_RULES.read_text().strip().splitlines()) <= 6
+
+
+def test_reminder_without_core_rules_file(tmp_path):
+    mark(tmp_path)
+    out = main(ev(hook_event_name="SessionStart", session_id="s1", source="compact"),
+               tmp_path, tmp_path / "missing.md")
+    ctx = json.loads(out)["hookSpecificOutput"]["additionalContext"]
+    assert "ProfesorIA is active" in ctx and "Core rules" not in ctx
